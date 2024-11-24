@@ -1,0 +1,19 @@
+CHIP DecoderSegment201759795{
+    IN A, B, C, D;
+    OUT d;
+
+    PARTS:
+    Not(in=A,out=notA);
+    Not(in=B, out=notB);
+    Not(in=C, out=notC);
+    Not(in=D, out=notD);
+
+    And(a=notB, b=notD, out=notBandnotD);
+    And(a=notA, b=notB, out=notAandnotB);
+    And3Way(a=notA, b=notC, c=notD, out=notAandnotCandnotD);
+    And3Way(a=A, b=notC, c=D, out=AandnotCandD);
+    And3Way(a=notA, b=C, c=D, out=notAandCandD);
+
+    Or4Way(a=notBandnotD, b=notAandnotB, c=notAandnotCandnotD, d=AandnotCandD, out=orOne);
+    Or(a=orOne, b=notAandCandD, out=d);
+}

@@ -1,0 +1,33 @@
+CHIP Decoder0516423 {
+    IN A,B,C,D;
+    OUT a,b,c,d,e,f,g;
+
+    PARTS:
+
+    //decoder d
+    DecoderSegment201759795(A=A,B=B,C=C,D=D,d=d);
+
+    //decoder c
+    DecoderSegment201812136(A=A,B=B,C=C,D=D,c=c);
+
+    //decoder a
+    DecoderSegment201832158(A=A,B=B,C=C,D=D,a=a);
+
+    //decoder g
+    DecoderSegment201870848(A=A,B=B,C=C,D=D,g=g);
+
+    //decoder f
+    DecoderSegment201871550(A=A,B=B,C=C,D=D,f=f);
+
+    //decoder b
+    DecoderSegment201910555(A=A,B=B,C=C,D=D,b=b);
+
+    //decoder e
+
+    DecoderSegmentE(A=A,B=B,C=C,D=D,e=e);
+
+}
+    
+
+    
+

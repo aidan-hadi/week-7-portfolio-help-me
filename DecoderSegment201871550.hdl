@@ -1,0 +1,32 @@
+CHIP  DecoderSegment201871550 {
+    IN A, B, C, D;
+    OUT f;          // Output for the middle segment
+
+    PARTS:
+    Not(in= A, out= notA);
+    Not(in= B, out= notB);
+    Not(in= C, out= notC);
+    Not(in= D, out= notD);
+
+    Or(a= B, b= C, out= s1);
+    Or(a= s1, b= notD, out= term1); // Term1
+
+    Or(a= A, b= notB, out= s2);
+    Or(a= C, b= D, out= s3);
+    Or(a= s2, b= s3, out= term2);  // Term2
+
+    And(a=term1, b=term2, out=finish1); // First 2 Parts
+
+    Or(a= notB, b= notC, out= s4);
+    Or(a= s4, b= notD, out= term3); // Term3
+    
+    And(a= finish1, b= term3, out= finish2); // And parts 1,2,3
+
+    Or(a= notA, b= B, out= s5);
+    Or(a= notC, b= D, out= s6);
+    Or(a= s5, b= s6, out= term4); // Term4
+
+    And(a= finish2, b= term4, out= f);
+
+
+}

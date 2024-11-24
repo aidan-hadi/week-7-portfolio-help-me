@@ -1,0 +1,39 @@
+CHIP DecoderSegment201910555 {
+    IN A, B, C, D;
+    OUT b;
+
+    PARTS:
+    // Nots
+    Not (in=A, out=notA);
+    Not (in=B, out=notB);
+    Not (in=C, out=notC);
+    Not (in=D, out=notD);
+
+    // T
+    And (a=B, b=C, out=T);
+
+    // U
+    And (a=notA, b=C, out=U);
+
+    // V
+    And (a=A, b=notD, out=V);
+
+    // X
+    And (a=notB, b=notD, out=X);
+
+    // Y
+    And (a=A, b=notB, out=Y1);
+    And (a=Y1, b=notC, out=Y);
+
+    // Z
+    And (a=notA, b=B, out=Z1);
+    And (a=Z1, b=D, out=Z);
+
+    // Final / b
+    Or (a=T, b=U, out=F1);
+    Or (a=F1, b=V, out=F2);
+    Or (a=F2, b=X, out=F3);
+    Or (a=F3, b=Y, out=F4);
+    Or (a=F4, b=Z, out=b);
+}
+

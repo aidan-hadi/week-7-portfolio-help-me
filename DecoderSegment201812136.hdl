@@ -1,0 +1,97 @@
+/**
+ *DecoderSegment201812136
+ */
+
+CHIP DecoderSegment201812136{
+    IN A, B, C, D;
+    OUT c;
+
+    PARTS:
+
+    //Initialise NOTS
+    Not (in=A, out=nota);
+    Not (in=B, out=notb);
+    Not (in=C, out=notc);
+    Not (in=D, out=notd);
+
+    //Line 0
+    And (a=nota, b=notb, out=notaandnotb);
+    And (a=notc, b=notd, out=notcandnotd);
+    And (a=notaandnotb, b=notcandnotd, out=linezero);
+
+    //Line 1
+    And (a=notc, b=D, out=notcandd);
+    And (a=notaandnotb, b=notcandd, out=lineone);
+
+    //Line 2
+    And (a=A, b=B, out=aandb);
+    And (a=aandb, b=notcandd, out=linetwo);
+
+    //Line 3
+    And (a=C, b=D, out=candd);
+    And (a=notaandnotb, b=candd, out=linethree);
+
+    //Line 4
+    And (a=nota, b=B, out=notaandb);
+    And (a=notaandb, b=notcandnotd, out=linefour);
+
+    //Line 5
+    And (a=notaandb, b=notcandd, out=linefive);
+
+    //Line 6
+    And (a=C, b=notd, out=candnotd);
+    And (a=notaandb, b=candnotd, out=linesix);
+
+    //Line 7
+    And (a=notaandb, b=candd, out=lineseven);
+
+    //Line 8
+    And (a=A, b=notb, out=aandnotb);
+    And (a=aandnotb, b=notcandnotd, out=lineeight);
+
+    //Line 9
+    And (a=aandnotb, b=notcandd, out=linenine);
+
+    //Line 10 - A
+    And (a=aandnotb, b=candnotd, out=lineten);
+
+    //Line 11 - B
+    And (a=aandnotb, b=candd, out=lineeleven);
+
+    //Line 12 - C
+    And (a=notaandnotb, b=candd, out=linetwelve);
+
+    //Line 13 - D
+    And (a=aandb, b=notcandd, out=linethirteen);
+
+    //Line 14 - E
+    And (a=notaandnotb, b=notcandd, out=linefourteen);
+
+    //Line 15 - F
+    And (a=notaandnotb, b=notcandnotd, out=linefifteen);
+
+    Or (a=linezero, b=lineone, out=zeroorone);
+    Or (a=linetwo, b=linethree, out=twoorthree);
+    Or (a=linefour, b=linefive, out=fourorfive);
+    Or (a=linesix, b=lineseven, out=sixorseven);
+    Or (a=lineeight, b=linenine, out=eightornine);
+    Or (a=lineten, b=lineeleven, out=tenoreleven);
+    Or (a=linetwelve, b=linethirteen, out=twelveorthirteen);
+    Or (a=linefourteen, b=linefifteen, out=fourteenorfifteen);
+
+    Or (a=zeroorone, b=twoorthree, out=f1);
+    Or (a=fourorfive, b=sixorseven, out=f2);
+    Or (a=eightornine, b=tenoreleven, out=f3);
+    Or (a=twelveorthirteen, b=fourteenorfifteen, out=f4);
+
+   Or(a=f1, b=f2, out= ff1);
+   Or(a=f3, b=f4, out= ff2);
+   Or(a=ff1, b=ff2, out=c);
+
+
+
+
+
+   
+   
+}  
